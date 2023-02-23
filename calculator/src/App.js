@@ -69,7 +69,31 @@ function App() {
       }
   }
 
+  const inversionOnClick = () => {
+    setCalc({
+      ...calc,
+      number: calc.number ? calc.number* -1: 0,
+      result: calc.result ? calc.result* -1: 0,
+      sign:""
+    })
+  }
+
+  const percentageOnClick = () =>{
+    setCalc({
+      ...calc,
+      number: calc.number  ? calc.number*0.01: 0
+    })
+  }
+
+  const commaOnClick = (value) =>{
+    setCalc({
+      ...calc,
+      number: !calc.number.toString().includes(".") ? calc.number + value : calc.number
+    })
+  }
+
   const checkWhatWasClicked = (value) => {
+
     if(value === "+" || value === "-" || value === "/" || value === "X" ){
       signOnClick(value);
     } else {
@@ -79,6 +103,15 @@ function App() {
           break;
         case `=`:
           equalsOnClick();
+          break;
+        case `+-`:
+          inversionOnClick();
+          break;
+        case `%`:
+          percentageOnClick();
+          break;
+        case `.`:
+          commaOnClick(value);
           break;
         default: 
           numberOnClick(value);
