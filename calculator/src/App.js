@@ -136,19 +136,19 @@ function App() {
 }
 
 const Calculator = ({children}) => {
-  return <div>{children}</div>
+  return <div className='calculator'>{children}</div>
 }
 
 const Screen = ({value}) => {
-  return <span>{value}</span>
+  return <span className='screen'>{value}</span>
 }
 
 const ButtonBox = ({children}) =>{
-  return <div>{children}</div>
+  return <div className="buttonBox">{children}</div>
 }
 
 const Button = ({value,onClick}) =>{
-  return <button onClick={onClick}>{value}</button>
+  return <button className={value !== '='? value : 'equals'} onClick={onClick}>{value}</button>
 }
 
 

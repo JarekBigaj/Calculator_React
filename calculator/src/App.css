@@ -1,38 +1,95 @@
+.color1 {color: #002730;}
+.color2 {color: #005686;}
+.color3 {color: #ff4d43;}
+.color4 {color: #ffb752;}
+.color5 {color: #ffff8b;}
+
+body{
+  background-color: #ffff8b;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.calculator{
+  position: relative;
+  margin: 5rem auto;
+  width: 20rem;
+  height: 25rem;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #002730;
+  box-shadow: 3px 5px 3px 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.screen{
+  height: 5rem;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 0 10px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: flex-end;
   color: white;
+  font-weight: bold;
+  box-sizing: border-box;
+  font-size: 3rem;
+  background-color: hsl(191, 100%, 11%);
+  cursor: default;
 }
 
-.App-link {
-  color: #61dafb;
+.buttonBox{
+  width: 100%;
+  background-color: blue;
+  height: calc(100% - 100px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 10px;
+  background-color: hsl(191, 100%, 12%);
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.equals{
+  grid-column: 3 / 5;
+  background-color: #ff4d43;
+}
+
+button{
+  border: none;
+  margin: 2px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  outline: none;
+  background-color: hsl(201, 100%, 28%);
+  color: #ffff8b;
+}
+
+.equals:hover{
+  background-color: hsl(3, 100%, 53%);
+  border-bottom: 3px solid  hsl(3, 100%, 63%);
+  border-right: 3px solid  hsl(3, 100%, 63%);
+}
+
+.equals:active{
+  background-color: hsl(3, 100%, 43%);
+  border: 2px solid hsl(3, 100%, 53%);
+  color: hsla(60, 28%, 15%, 1);
+}
+
+button:hover{
+  background-color: hsl(201, 100%, 23%);
+  color: hsl(60, 100%, 80%);
+  border-bottom: 3px solid  hsl(201, 100%, 18%);
+  border-right: 3px solid  hsl(201, 100%, 18%);
+}
+
+button:active{
+  background-color: hsla(193, 99%, 40%, 1);
+  border: 2px solid hsla(193, 99%, 38%, 1);
+  color: hsla(60, 28%, 15%, 1);
 }
