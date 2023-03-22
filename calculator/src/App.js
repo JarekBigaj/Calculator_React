@@ -1,5 +1,13 @@
-import './App.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import React from 'react';
+import styled from 'styled-components';
+import { createGlobalStyle } from "styled-components"
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #ffff8b;
+  }
+`
 
 const buttonValues = [
   ["C", "+-", "%", "/"],
@@ -18,6 +26,10 @@ function App() {
     number:0,
     result:0
   });
+
+  useEffect(()=>{
+    console.log("clicked!")
+  },[calc]);
 
   const resetCalcResult = () => {
     setCalc({
@@ -118,9 +130,9 @@ function App() {
       }
     }
   }
-
+  
   return (
-    <div className="App">
+    <StyledApp>
       <Calculator>
         <Screen value={calc.number ? calc.number : calc.result}/>
         <ButtonBox>
@@ -131,25 +143,112 @@ function App() {
           }
         </ButtonBox>
       </Calculator>
-    </div>
+      <GlobalStyle/>
+    </StyledApp>
   );
 }
 
 const Calculator = ({children}) => {
-  return <div className='calculator'>{children}</div>
+  return <StyledCalculator className='calculator'>{children}</StyledCalculator>
 }
 
 const Screen = ({value}) => {
-  return <span className='screen'>{value}</span>
+  return <StyledScreen className='screen'>{value}</StyledScreen>
 }
 
 const ButtonBox = ({children}) =>{
-  return <div className="buttonBox">{children}</div>
+  return <StyledButtonBox>{children}</StyledButtonBox>
 }
 
 const Button = ({value,onClick}) =>{
-  return <button className={value !== '='? value : 'equals'} onClick={onClick}>{value}</button>
+  return <StyledButton className={value !== '='? value : 'equals'} onClick={onClick}>{value}</StyledButton>
 }
+
+
+const StyledButton = styled.button`
+  border: none;
+  margin: 2px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  outline: none;
+  background-color: hsl(201, 100%, 28%);
+  color: #ffff8b;
+
+  &.equals{
+    grid-column: 3 / 5;
+    background-color: #ff4d43;
+  }
+  &.equals:hover{
+    background-color: hsl(3, 100%, 53%);
+    border-bottom: 3px solid  hsl(3, 100%, 63%);
+    border-right: 3px solid  hsl(3, 100%, 63%);
+  }
+
+  &.equals:active{
+    background-color: hsl(3, 100%, 43%);
+    border: 2px solid hsl(3, 100%, 53%);
+    color: hsla(60, 28%, 15%, 1);
+  }
+  
+  &:hover{
+  background-color: hsl(201, 100%, 23%);
+  color: hsl(60, 100%, 80%);
+  border-bottom: 3px solid  hsl(201, 100%, 18%);
+  border-right: 3px solid  hsl(201, 100%, 18%);
+  }
+
+  &:active{
+  background-color: hsla(193, 99%, 40%, 1);
+  border: 2px solid hsla(193, 99%, 38%, 1);
+  color: hsla(60, 28%, 15%, 1);
+  }  
+`;
+
+const StyledButtonBox = styled.div`
+  width: 100%;
+  background-color: blue;
+  height: calc(100% - 100px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 10px;
+  background-color: hsl(191, 100%, 12%);
+  border-radius: 5px;
+`;
+
+const StyledScreen = styled.span`
+  height: 5rem;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: white;
+  font-weight: bold;
+  box-sizing: border-box;
+  font-size: 3rem;
+  background-color: hsl(191, 100%, 11%);
+  cursor: default;
+`;
+
+const StyledCalculator = styled.div`
+  position: relative;
+  margin: 5rem auto;
+  width: 20rem;
+  height: 25rem;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #002730;
+  box-shadow: 3px 5px 3px 5px;
+`;
+
+const StyledApp = styled.div`
+  text-align: center;
+`;
 
 
 
